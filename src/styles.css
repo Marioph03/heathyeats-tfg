@@ -1,1 +1,208 @@
-/* You can add global styles to this file, and also import other style files */
+/* ------------------ Global ------------------ */
+body.dark-theme {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+}
+
+body.dark-theme .bg-light,
+body.dark-theme .text-black {
+  background-color: #1f1f1f !important;
+  color: #ffffff !important;
+}
+
+/* ------------------ Login y Tarjetas ------------------ */
+body.dark-theme .login-container,
+body.dark-theme .card {
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
+  border: 1px solid #444;
+}
+
+body.dark-theme .login-container h1,
+body.dark-theme .login-container h2,
+body.dark-theme .login-container h3,
+body.dark-theme .login-container p,
+body.dark-theme .card-title {
+  color: #ffffff !important;
+}
+
+body.dark-theme .login-container .form-control,
+body.dark-theme .login-container input {
+  background-color: #2b2b2b !important;
+  color: #ffffff !important;
+  border-color: #555 !important;
+}
+
+body.dark-theme .login-container .form-control::placeholder {
+  color: #bbbbbb !important;
+}
+
+body.dark-theme .input-group-text {
+  background-color: #343434 !important;
+  color: #ffffff !important;
+  border-color: #555 !important;
+}
+
+body.dark-theme .login-container .btn-primary {
+  background-color: #005cbf !important;
+  border-color: #004080 !important;
+  color: #ffffff !important;
+}
+
+body.dark-theme .login-container .btn-primary:hover {
+  background-color: #004080 !important;
+  border-color: #003060 !important;
+}
+
+body.dark-theme .login-container a {
+  color: #4a90e2 !important;
+}
+body.dark-theme .login-container a:hover {
+  color: #217dbb !important;
+}
+
+body.dark-theme .login-container .alert-danger,
+body.dark-theme .login-container .invalid-feedback {
+  background-color: #542626 !important;
+  color: #ffcccc !important;
+  border-color: #874747 !important;
+}
+
+/* ------------------ Alertas Globales ------------------ */
+body.dark-theme .alert-success {
+  background-color: #28542b !important;
+  color: #ccffcc !important;
+  border-color: #3c6f42 !important;
+}
+body.dark-theme .alert-warning {
+  background-color: #645d26 !important;
+  color: #ffffcc !important;
+  border-color: #8a813d !important;
+}
+body.dark-theme .alert-info {
+  background-color: #214f67 !important;
+  color: #cceeff !important;
+  border-color: #376a83 !important;
+}
+
+/* ------------------ Formularios ------------------ */
+body.dark-theme .form-control {
+  background-color: #333 !important;
+  border: 1px solid #555 !important;
+  color: #fff !important;
+}
+body.dark-theme .form-control:focus {
+  background-color: #3a3f44 !important;
+  border-color: #888 !important;
+  box-shadow: 0 0 0 0.2rem rgba(255,255,255,0.2) !important;
+}
+body.dark-theme .form-control::placeholder {
+  color: #bbb !important;
+  opacity: 0.9 !important;
+}
+
+/* ------------------ Botones ------------------ */
+body.dark-theme .btn {
+  background-color: #333 !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #555 !important;
+}
+body.dark-theme .btn:hover,
+body.dark-theme .btn:focus {
+  background-color: #444 !important;
+  border-color: #666 !important;
+}
+
+body.dark-theme .btn-primary {
+  background-color: #0d6efd !important;
+  border-color: #0d6efd !important;
+}
+body.dark-theme .btn-secondary {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+}
+body.dark-theme .btn-outline-light {
+  color: #fff !important;
+  border-color: #fff !important;
+}
+body.dark-theme .btn-success {
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+}
+body.dark-theme .btn-close {
+  filter: invert(1) !important;
+  opacity: 1 !important;
+}
+
+/* Estados activos */
+.sala.active,
+.active-dark {
+  background-color: #6c757d !important;
+  color: #fff !important;
+}
+
+/* ------------------ Modal ------------------ */
+body.dark-theme .modal-content {
+  background-color: #1e1e1e !important;
+  color: #e0e0e0 !important;
+}
+body.dark-theme .modal-header,
+body.dark-theme .modal-footer {
+  background-color: #272727 !important;
+  border-color: #444 !important;
+}
+
+/* ------------------ Calendario ------------------ */
+body.dark-theme .calendar-container {
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
+  padding: 1rem !important;
+  border: 1px solid #444 !important;
+}
+body.dark-theme .calendar-header {
+  background-color: #2b2b2b !important;
+  border-bottom: 1px solid #444 !important;
+  padding: 0.5rem 1rem !important;
+  color: #ffffff !important;
+}
+body.dark-theme .calendar-day {
+  background-color: #121212 !important;
+  border: 1px solid #333 !important;
+  color: #ffffff !important;
+  min-height: 100px !important;
+  position: relative !important;
+}
+body.dark-theme .calendar-day:hover {
+  background-color: #2b2b2b !important;
+}
+body.dark-theme .calendar-event {
+  background-color: #005cbf !important;
+  border: 1px solid #004080 !important;
+  color: #ffffff !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 4px !important;
+  font-size: 0.85rem !important;
+  margin: 0.1rem 0 !important;
+}
+body.dark-theme .calendar-event:hover {
+  background-color: #004080 !important;
+}
+body.dark-theme .calendar-today {
+  border: 2px solid #ffffff !important;
+}
+/* ------------ Dark Theme Form Inputs ------------ */
+body.dark-theme input,
+body.dark-theme select,
+body.dark-theme textarea,
+body.dark-theme label,
+body.dark-theme .form-label
+{
+  background-color: #2b2b2b !important;
+  color: #ffffff !important;
+  border-color: #555555 !important;
+}
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+  color: #bbbbbb !important;
+  opacity: 0.9 !important;
+}

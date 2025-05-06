@@ -1,0 +1,37 @@
+<div class="d-flex vh-100 justify-content-center align-items-center">
+  <!-- Toggle switch -->
+  <div class="toggle-switch me-3">
+    <label class="switch-label">
+      <input type="checkbox"
+             class="checkbox"
+             [checked]="isDarkTheme"
+             (change)="toggleTheme()">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- Login box -->
+  <div class="login wrap">
+    <div class="login-header text-center mb-4">
+      <img src="/Healthy_Eats_Logo.png"
+           alt="Mi Empresa"
+           class="logo" />
+      <div class="h1">Login</div>
+    </div>
+    <form [formGroup]="loginForm"
+          (ngSubmit)="onSubmit()">
+      <input pattern="…"
+             placeholder="Email"
+             id="email"
+             name="email"
+             type="text">
+      <input placeholder="Password"
+             id="password"
+             name="password"
+             type="password">
+      <input value="Login"
+             class="btn"
+             type="submit">
+    </form>
+  </div>
+</div>

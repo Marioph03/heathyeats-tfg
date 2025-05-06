@@ -1,0 +1,232 @@
+.login {
+  width: 400px;        /* Antes: 340px */
+  height: 500px;       /* Antes: 400px */
+  background: #2c2c2c;
+  padding: 47px;
+  padding-bottom: 57px;
+  color: #fff;
+  border-radius: 17px;
+  font-size: 1.3em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+  opacity: 1;
+  display: block;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 13px 18px;
+  margin: 20px 0 0 0;
+  font-size: 0.8em;
+  border-radius: 100px;
+  background: #3c3c3c;
+  color: #fff;
+}
+
+.login input:focus {
+  animation: bounce 1s;
+  -webkit-appearance: none;
+}
+
+.login input[type=submit],
+.login input[type=button],
+.h1 {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  padding: 13px;
+  margin: 40px 0 0 0;
+  border-radius: 500px;
+  font-weight: 600;
+  animation: bounce2 1.6s;
+}
+
+.h1 {
+  padding: 0;
+  position: relative;
+  top: -35px;
+  display: block;
+  margin-bottom: 0;
+  font-size: 1.3em;
+}
+
+.btn {
+  background: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+  color: #fff;
+  padding: 16px !important;
+}
+
+.btn:hover {
+  background: linear-gradient(144deg, #1e1e1e 20%, #1e1e1e 50%, #1e1e1e);
+  color: #fff;
+  padding: 16px !important;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.login input[type=text] {
+  animation: bounce 1s;
+  -webkit-appearance: none;
+}
+
+.login input[type=password] {
+  animation: bounce1 1.3s;
+}
+
+.ui {
+  font-weight: bolder;
+  background: -webkit-linear-gradient(#B563FF, #535EFC, #0EC8EE);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-bottom: 4px solid transparent;
+  border-image: linear-gradient(0.25turn, #535EFC, #0EC8EE, #0EC8EE);
+  border-image-slice: 1;
+  display: inline;
+}
+
+@media only screen and (max-width: 600px) {
+  .login {
+    width: 80%;      /* Ajusta al 80% en móvil */
+    height: auto;    /* Deja que el contenido marque la altura */
+    padding: 3em;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(-250px);
+    opacity: 0;
+  }
+}
+@keyframes bounce1 {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+}
+@keyframes bounce2 {
+  0% {
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+/* Asegúrate de que el body ocupe toda la ventana */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Centrar .login.wrap en la ventana */
+.login.wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-header img {
+  display: block;
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  object-fit: cover;
+}
+
+.img-fluid {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.login-header {
+  text-align: center;
+}
+
+.login-header .logo {
+  display: block;
+  margin: 0 auto 1rem;
+  max-width: 120px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.login-header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 100px;
+  height: 50px;
+  --light: #d8dbe0;
+  --dark: #28292c;
+  --link: rgb(27, 129, 112);
+  --link-hover: rgb(24, 94, 82);
+}
+
+.switch-label {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  background-color: var(--dark);
+  border-radius: 25px;
+  cursor: pointer;
+  border: 3px solid var(--dark);
+}
+
+.checkbox {
+  position: absolute;
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+
+.checkbox:checked ~ .slider {
+  background-color: var(--light);
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  box-shadow: inset 12px -4px 0px 0px var(--light);
+  background-color: var(--dark);
+  transition: 0.3s;
+}
+
+.checkbox:checked ~ .slider::before {
+  transform: translateX(50px);
+  box-shadow: none;
+}
+
+.submit {
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  transform: .3s ease;
+  background-color: #00bfff;
+}

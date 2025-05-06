@@ -1,0 +1,60 @@
+<div class="d-flex vh-100 justify-content-center align-items-center">
+  <!-- Toggle switch -->
+  <div class="toggle-switch me-3">
+    <label class="switch-label">
+      <input type="checkbox"
+             class="checkbox"
+             [checked]="isDarkTheme"
+             (change)="toggleTheme()">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- Login box -->
+  <div class="login wrap">
+    <div class="login-header text-center mb-4">
+      <img src="/Healthy_Eats_Logo.png"
+           alt="Mi Empresa"
+           class="logo" />
+      <div class="h1">Register</div>
+    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <input
+        formControlName="username"
+        name="username"
+        id="username"
+        type="text"
+        placeholder="Username"
+        required>
+
+      <input
+        formControlName="full_name"
+        name="fullname"
+        id="fullname"
+        type="text"
+        placeholder="Full Name"
+        required>
+
+      <input
+        formControlName="email"
+        name="email"
+        id="email"
+        type="text"
+        placeholder="Email"
+        required>
+
+      <input
+        formControlName="password_hash"
+        name="password"
+        id="password"
+        type="password"
+        placeholder="Password"
+        required>
+
+      <input value="Registrarse"
+             class="btn"
+             type="submit"
+             [disabled]="registerForm.invalid">
+    </form>
+  </div>
+</div>
