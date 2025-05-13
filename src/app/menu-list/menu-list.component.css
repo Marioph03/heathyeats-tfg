@@ -1,3 +1,59 @@
+.status { text-align: center; margin: 1rem 0; color: var(--color-text); }
+.status.error { color: #e57373; }
+
+.home-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  margin: 0;
+  padding: 0;
+}
+
+.menu-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  gap: 2rem 1rem;
+  padding: 1rem 0;
+}
+
+.menu-card {
+  background-color: var(--color-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform .2s, box-shadow .2s;
+  cursor: pointer;
+}
+.menu-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.menu-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
+
+.menu-card__title {
+  margin: .5rem 0;
+  font-size: 1rem;
+  color: var(--color-text);
+  text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .status { color: var(--color-text); }
+  .status.error { color: #ef9a9a; }
+
+  .menu-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  }
+  .menu-card__title { color: var(--color-text); }
+}
+
 :root {
   /* Colores inspirados en la naturaleza */
   --color-primary: #2e5f37;
@@ -23,14 +79,6 @@
   margin: 0 auto;
   padding: 0 1rem;
   width: 100%;
-}
-
-.home-container {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  margin: 0;
-  padding: 0;
 }
 
 .site-header {
@@ -356,4 +404,110 @@
     font-weight: 400;              /* peso normal */
     line-height: 1.4;              /* separación óptima */
   }
+}
+
+.card {
+  width: 190px;
+  height: 254px;
+  overflow: visible;
+  cursor: pointer;
+  position: relative;
+}
+
+.card::before, .content {
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 1px #00000022;
+  transition: transform 300ms, box-shadow 200ms;
+}
+
+.card::before {
+  position: absolute;
+  content: ' ';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #ee9933;
+  transform: rotateZ(5deg);
+}
+
+.description {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.info {
+  color: #00000066;
+}
+
+.price::before {
+  content: '$';
+}
+
+.price {
+  font-weight: bold;
+  color: #ee9933;
+}
+
+.description p {
+  margin-bottom: 10px;
+}
+
+.card .content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: rotateZ(-5deg);
+}
+
+.content .img {
+  width: 150px;
+  height: fit-content;
+}
+
+.card:hover::before, .card:hover .content {
+  transform: rotateZ(0deg);
+}
+
+.card:active::before, .card:active .content {
+  box-shadow: none;
+}
+
+/* Contenedor fijo para la imagen dentro de .content */
+.card .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* Altura total menos espacio de texto:
+     ajusta 120px si cambias padding o margenes */
+  height: calc(100% - 60px);
+  background: #fff;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: rotate(-5deg);
+}
+
+/* Ajusta la imagen para que siempre cubra el contenedor */
+.card .content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* Mueve la descripción abajo de la imagen */
+.card .description {
+  margin-top: 8px;
+  text-align: center;
+  /* Ocupa el espacio restante en .content */
+  flex: 2;
 }

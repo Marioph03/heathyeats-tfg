@@ -1,35 +1,143 @@
-<!-- home.component.html -->
-<!--<app-header></app-header> -->
+<div class="home-container">
+  <!-- Site Navigation Header -->
+  <header class="site-header"><!-- Toggle switch -->
+    <div class="toggle-switch me-3">
+      <label class="switch-label">
+        <input type="checkbox"
+               class="checkbox"
+               [checked]="isDarkTheme"
+               (change)="toggleTheme()">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="container header-container">
+      <a class="logo" routerLink="/home">Healthy Eats</a>
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a [routerLink]="['/home']">Inicio</a></li>
+          <li><a [routerLink]="['/menu']">Menú</a></li>
+          <li><a routerLink="/planes">Planes</a></li>
+          <li><a routerLink="/premium">Premium</a></li>
+          <li><a routerLink="/contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-<section class="hero" id="home">
-  <div class="hero-content">
-    <h1>Deliciosa Comida Saludable<br>a Domicilio</h1>
-    <p>Platos frescos y nutritivos elaborados con ingredientes naturales.</p>
-    <a routerLink="/menu" class="btn">Ver Menú</a>
-  </div>
-</section>
+  <!-- Sección Hero -->
+  <header class="hero">
+    <div class="container hero-content">
+      <h1>¡Tu comida saludable a domicilio!</h1>
+      <p class="hero-subtitle">Planes personalizados según tus necesidades y objetivos nutricionales</p>
+      <button class="cta-button" routerLink="/comenzar">Descubre tu plan ideal</button>
+    </div>
+  </header>
 
-<section class="features">
-  <div class="feature-card">
-    <img src="assets/icon-fresh.svg" alt="Ingredientes Frescos" />
-    <h3>Ingredientes Frescos</h3>
-    <p>Solo productos de temporada y calidad.</p>
-  </div>
-  <div class="feature-card">
-    <img src="assets/icon-speed.svg" alt="Entrega Rápida" />
-    <h3>Entrega Rápida</h3>
-    <p>Recibe tu pedido en menos de 45 minutos.</p>
-  </div>
-  <div class="feature-card">
-    <img src="assets/icon-care.svg" alt="Cuidado Nutricional" />
-    <h3>Cuidado Nutricional</h3>
-    <p>Menús diseñados por dietistas.</p>
-  </div>
-</section>
+  <!-- Características Principales -->
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">¿Por qué elegirnos?</h2>
+      <div class="features-grid">
 
-<section class="cta">
-  <h2>¿Listo para comer sano?</h2>
-  <a routerLink="/menu" class="btn">Empieza ahora</a>
-</section>
+        <div class="card">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <image
+              href="assets/dieta.jpg"
+              x="0" y="0"
+              width="24" height="24"
+              preserveAspectRatio="xMidYMid slice" />
+          </svg>
+          <div class="card__content">
+            <h3 class="card__title">Comida Personalizada</h3>
+            <p class="card__description">Menús adaptados a tus preferencias, alergias y objetivos nutricionales</p>
+          </div>
+        </div>
 
-<!--<app-footer></app-footer> -->
+        <div class="card">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <image
+              href="assets/comida-a-domicilio.jpg"
+              x="0" y="0"
+              width="24" height="24"
+              preserveAspectRatio="xMidYMid slice" />
+          </svg>
+          <div class="card__content">
+            <h3 class="card__title">Entrega a Domicilio</h3>
+            <p class="card__description">Recibe tus comidas frescas directamente en tu puerta</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <image
+              href="assets/plan-de-nutricion.jpg"
+              x="0" y="0"
+              width="24" height="24"
+              preserveAspectRatio="xMidYMid slice" />
+          </svg>
+          <div class="card__content">
+            <h3 class="card__title">Asesoría Nutricional</h3>
+            <p class="card__description">Acceso a nutricionistas profesionales en nuestra sección premium</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Cómo Funciona -->
+  <section class="how-it-works">
+    <div class="container">
+      <h2 class="section-title">¿Cómo funciona?</h2>
+      <ol class="steps" aria-label="Pasos de uso">
+        <li class="step">
+          <span class="step-number">1</span>
+          <h3>Personaliza tu Plan</h3>
+          <p>Cuéntanos tus preferencias y objetivos</p>
+        </li>
+        <li class="step">
+          <span class="step-number">2</span>
+          <h3>Selecciona tus Comidas</h3>
+          <p>Elige entre nuestros menús semanales</p>
+        </li>
+        <li class="step">
+          <span class="step-number">3</span>
+          <h3>Recibe en Casa</h3>
+          <p>Disfruta de tu comida saludable</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-section">
+        <h4>Contacto</h4>
+        <p>Email: <a href="mailto:info@tucomidasonline.com">info&#64;tucomidasonline.com</a></p>
+        <p>Tel: (555) 123-4567</p>
+      </div>
+      <div class="footer-section">
+        <h4>Enlaces</h4>
+        <nav aria-label="Pie de página">
+          <ul>
+            <li><a routerLink="/sobre-nosotros">Sobre Nosotros</a></li>
+            <li><a routerLink="/planes">Planes</a></li>
+            <li><a routerLink="/premium">Premium</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-section">
+        <h4>Síguenos</h4>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {{ currentYear }} Tu Comida Online. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+</div>

@@ -1,0 +1,52 @@
+<ng-container *ngIf="loading">
+  <p class="status">Cargando…</p>
+</ng-container>
+
+<div class="status error" *ngIf="error">
+  {{ error }}
+</div>
+
+<header class="site-header"><!-- Toggle switch -->
+  <div class="toggle-switch me-3">
+    <label class="switch-label">
+      <input type="checkbox"
+             class="checkbox"
+             [checked]="isDarkTheme"
+             (change)="toggleTheme()">
+      <span class="slider"></span>
+    </label>
+  </div>
+  <div class="container header-container">
+    <a class="logo" routerLink="/home">Healthy Eats</a>
+    <nav aria-label="Main navigation">
+      <ul class="nav-links">
+        <li><a [routerLink]="['/home']">Inicio</a></li>
+        <li><a [routerLink]="['/menu']">Menú</a></li>
+        <li><a routerLink="/planes">Planes</a></li>
+        <li><a routerLink="/premium">Premium</a></li>
+        <li><a routerLink="/contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section *ngFor="let sec of sections" class="menu-section">
+    <h2 class="menu-section__title">{{ sec.title }}</h2>
+    <div class="menu-list">
+      <div class="card" *ngFor="let meal of sec.meals">
+        <div class="content">
+        <img [src]="meal.strMealThumb" [alt]="meal.strMeal" />
+          <div class="description">
+            <p class="title">
+              <strong> {{ meal.strMeal }} </strong>
+            </p>
+            <p class="info">
+              {{ meal.strCategory }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

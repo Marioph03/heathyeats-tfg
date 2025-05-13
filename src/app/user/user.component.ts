@@ -36,8 +36,8 @@ export class UserComponent implements OnInit {
 
   private initLoginForm(): void {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      password_hash: ['', Validators.required]
     });
   }
 
@@ -65,20 +65,20 @@ export class UserComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.invalid) return;
+    const { email, password_hash } = this.loginForm.value;
 
-    const { username, password } = this.loginForm.value;
-    this.authService.logIn(username, password)
-      .subscribe({
-        next: ({ access_token }) => {
-          localStorage.setItem('access_token', access_token);
-          Swal.fire('Éxito', 'Sesión iniciada con éxito. Redirigiendo...', 'success');
-          setTimeout(() => this.router.navigate(['/home']), 2000);
-        },
-        error: (err) => {
-          const message = err.error?.message ?? err.message ?? 'Error desconocido';
-          Swal.fire('Error', message, 'error');
-        }
-      });
+    console.log("datos: " + email + " " + password_hash);
+
+    this.authService.logIn(email, password_hash).subscribe({
+      next: () => {
+        Swal.fire('Bienvenido', 'Has iniciado sesión con éxito', 'success');
+        this.router.navigate(['/home']);
+      },
+      error: err => {
+        const msg = err.error?.message || 'Ocurrió un error';
+        Swal.fire('Error', msg, 'error');
+      }
+    });
   }
 
   handleCredentialResponse(response: any): void {

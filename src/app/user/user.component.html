@@ -18,20 +18,18 @@
            class="logo" />
       <div class="h1">Login</div>
     </div>
-    <form [formGroup]="loginForm"
-          (ngSubmit)="onSubmit()">
-      <input pattern="…"
-             placeholder="Email"
-             id="email"
-             name="email"
-             type="text">
-      <input placeholder="Password"
-             id="password"
-             name="password"
-             type="password">
-      <input value="Login"
-             class="btn"
-             type="submit">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input
+        formControlName="email"
+        placeholder="Email"
+        type="text" />
+
+      <input
+        formControlName="password_hash"
+        placeholder="Password"
+        type="password" />
+
+      <input value="Login" class="btn" type="submit" >
     </form>
   </div>
 </div>

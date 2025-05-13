@@ -206,3 +206,10 @@ body.dark-theme textarea::placeholder {
   color: #bbbbbb !important;
   opacity: 0.9 !important;
 }
+
+.premium-section-dark {
+  background: var(--color-accent);
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #ffffff;
+}

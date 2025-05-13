@@ -45,25 +45,26 @@ export class AuthService implements OnChanges{
 
   /**
    * Método de iniciar sesión, es llamado cuando el formulario es válido
-   * @param username Nombre del usuario
+   * @param email Email del usuario
    * @param password Contraseña del usuario
    * Necesita subscripción en el componente en el que se usará
    */
 
-  logIn(username: string, password: string): Observable<{ access_token: string }> {
-    return this.http.post<{ access_token: string }>(`${this.apiUrl}login`, { username, password })
-      .pipe( //Modifica o reacciona a los datos devueltos sin modificar la respuesta original
-        tap({ //Se usa para ejecutar acciones adicionales sin modificar los datos que fluyen por el Observable
-          next: response => {
-            const token = response.access_token;
-            console.log('Token: ', token)
-            if (token) {
-              localStorage.setItem('access_token', token)
-              this.isLoggedSignal.set(true);
-            }
+  logIn(email: string, password_hash: string): Observable<{ access_token: string }> {
+    return this.http
+      .post<{ access_token: string }>(
+        `${this.apiUrl}/login`,
+        { email, password_hash }
+      )
+      .pipe(
+        tap(response => {
+          const token = response.access_token;
+          if (token) {
+            localStorage.setItem('access_token', token);
+            this.isLoggedSignal.set(true);
           }
         })
-      )
+      );
   }
 
   /**
