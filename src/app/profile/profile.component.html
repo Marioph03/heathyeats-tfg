@@ -1,0 +1,28 @@
+<div class="profile-container">
+  <h2>Mi Perfil</h2>
+
+  <div *ngIf="loading" class="status loading">Cargando…</div>
+  <div *ngIf="error" class="status error">{{ error }}</div>
+
+  <form class="profile-form" [formGroup]="form" (ngSubmit)="save()">
+    <div class="form-group">
+      <label for="full_name">Nombre Completo</label>
+      <input id="full_name" formControlName="full_name" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" />
+    </div>
+
+    <div class="form-group">
+      <label for="password_hash">Contraseña</label>
+      <input id="password_hash" formControlName="password_hash" />
+    </div>
+
+    <div class="button-group">
+      <button type="submit" class="save-btn" [disabled]="form.invalid">Guardar</button>
+      <button type="button" class="back-btn" [routerLink]="['/home']">Volver</button>
+    </div>
+  </form>
+</div>

@@ -1,25 +1,18 @@
-import {Component, inject, OnInit, Renderer2} from '@angular/core';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import { Component, inject, OnInit, Renderer2 } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import {environment} from '../../interface/enviroment';
+import { environment } from '../../interface/enviroment';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
-  imports: [
-    FormsModule,
-    ReactiveFormsModule
-  ],
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  model = {
-    username: '',
-    full_name: '',
-    email: '',
-    password_hash: ''
-  };
   registerForm!: FormGroup;
   loading = false;
   submitted = false;
@@ -27,31 +20,26 @@ export class RegisterComponent implements OnInit {
   isDarkTheme = false;
 
   private renderer = inject(Renderer2);
-
-  constructor(
-    private fb: FormBuilder,
-    private http: HttpClient,
-    private router: Router
-  ) {
-    this.apiUrl = environment.apiUrl;
-  }
-
-  apiUrl!: string;
+  private fb = inject(FormBuilder);
+  private http = inject(HttpClient);
+  private router = inject(Router);
+  private apiUrl = environment.apiUrl;
 
   ngOnInit(): void {
-    console.log('Formulario enviado:', this.model);
-    // Inicializa el formulario con validaciones
-    this.registerForm = this.fb.group({
-      username:    ['', Validators.required],
-      full_name:    ['', Validators.required],    // <-- aquí debería ser full_name
-      email:       ['', [Validators.required, Validators.email]],
-      password_hash:    ['', Validators.required],
-      rol:         ['user']
-    });
+    this.initForm();
     this.applySavedTheme();
   }
 
-  // Getter para acceder fácilmente a los controles del formulario
+  private initForm(): void {
+    this.registerForm = this.fb.group({
+      username: ['',[Validators.required]],
+      full_name: ['',[Validators.required]],
+      email: ['',[Validators.required, Validators.email]],
+      password: ['',[Validators.required]],
+      rol: ['user']
+    });
+  }
+
   get f() {
     return this.registerForm.controls;
   }
@@ -60,28 +48,20 @@ export class RegisterComponent implements OnInit {
     this.submitted = true;
     this.errorMessage = '';
 
-    // Si el formulario no es válido, salimos
     if (this.registerForm.invalid) {
       return;
     }
 
     this.loading = true;
-
-    // Llamada al endpoint de registro
     this.http
       .post<{ message: string }>(
         `${this.apiUrl}/createUser`,
         this.registerForm.value
       )
       .subscribe({
-        next: (response) => {
-          // Registro correcto: redirigir a login (o donde quieras)
-          this.router.navigate(['/login']);
-        },
+        next: () => this.router.navigate(['/login']),
         error: (err) => {
-          // Mostrar mensaje de error
-          this.errorMessage =
-            err.error?.message || 'Error al registrar el usuario';
+          this.errorMessage = err.error?.message || 'Error al registrar el usuario';
           this.loading = false;
         }
       });

@@ -1,24 +1,93 @@
 <div class="home-container">
   <!-- Site Navigation Header -->
-  <header class="site-header"><!-- Toggle switch -->
+  <!-- Header con menú desplegable de usuario -->
+  <header class="site-header">
+    <!-- Theme toggle -->
     <div class="toggle-switch me-3">
       <label class="switch-label">
-        <input type="checkbox"
-               class="checkbox"
-               [checked]="isDarkTheme"
-               (change)="toggleTheme()">
+        <input
+          type="checkbox"
+          class="checkbox"
+          [checked]="isDarkTheme"
+          (change)="toggleTheme()"
+        />
         <span class="slider"></span>
       </label>
     </div>
+
+    <!-- Logo + Navigation -->
     <div class="container header-container">
       <a class="logo" routerLink="/home">Healthy Eats</a>
       <nav aria-label="Main navigation">
         <ul class="nav-links">
-          <li><a [routerLink]="['/home']">Inicio</a></li>
-          <li><a [routerLink]="['/menu']">Menú</a></li>
-          <li><a routerLink="/planes">Planes</a></li>
-          <li><a routerLink="/premium">Premium</a></li>
-          <li><a routerLink="/contacto">Contacto</a></li>
+          <li>
+            <a [routerLink]="['/home']" title="Inicio">
+              <i class="bi bi-house-door fs-3"></i>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/menu']" title="Menú">
+              <i class="bi bi-card-list fs-3"></i>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/planes']" title="Planes">
+              <i class="bi bi-calendar-check fs-3"></i>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/premium/plans']" title="Premium">
+              <i class="bi bi-star-fill fs-3"></i>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/contacto']" title="Contacto">
+              <i class="bi bi-envelope fs-3"></i>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/carrito']" title="Carrito">
+              <i class="bi bi-cart"></i>
+            </a>
+          </li>
+
+          <!-- Popup-dropdown de usuario -->
+          <li>
+            <label class="popup">
+              <input type="checkbox" />
+              <div tabindex="0" class="burger">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="white"
+                  height="20"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2c2.757 0 5 2.243 5 5.001 0 2.756-2.243 5-5 5s-5-2.244-5-5c0-2.758 2.243-5.001 5-5.001zm0-2c-3.866 0-7 3.134-7 7.001 0 3.865 3.134 7 7 7s7-3.135 7-7c0-3.867-3.134-7.001-7-7.001zm6.369 13.353c-.497.498-1.057.931-1.658 1.302 2.872 1.874 4.378 5.083 4.972 7.346h-19.387c.572-2.29 2.058-5.503 4.973-7.358-.603-.374-1.162-.811-1.658-1.312-4.258 3.072-5.611 8.506-5.611 10.669h24c0-2.142-1.44-7.557-5.631-10.647z"
+                  ></path>
+                </svg>
+              </div>
+              <nav class="popup-window">
+                <legend>Usuario</legend>
+                <ul>
+                  <li><button (click)="router.navigate(['/profile'])">
+                    <i class="bi bi-person-circle"></i>
+                    <span>Perfil</span>
+                  </button></li>
+                  <li><button (click)="router.navigate(['/settings'])">
+                    <i class="bi bi-gear"></i>
+                    <span>Configuración</span>
+                  </button></li>
+                  <hr />
+                  <li><button (click)="authSrvc.logout()">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                  </button></li>
+                </ul>
+              </nav>
+            </label>
+          </li>
         </ul>
       </nav>
     </div>
@@ -29,7 +98,7 @@
     <div class="container hero-content">
       <h1>¡Tu comida saludable a domicilio!</h1>
       <p class="hero-subtitle">Planes personalizados según tus necesidades y objetivos nutricionales</p>
-      <button class="cta-button" routerLink="/comenzar">Descubre tu plan ideal</button>
+      <button class="cta-button" [routerLink]="['/menu']">Descubre tu plan ideal</button>
     </div>
   </header>
 
@@ -114,16 +183,16 @@
     <div class="container footer-content">
       <div class="footer-section">
         <h4>Contacto</h4>
-        <p>Email: <a href="mailto:info@tucomidasonline.com">info&#64;tucomidasonline.com</a></p>
-        <p>Tel: (555) 123-4567</p>
+        <p>Email: <a href="mailto:healthyeats@gmail.com">healthyeats&#64;gmail.com</a></p>
+        <p>Tel: 680 59 98 37</p>
       </div>
       <div class="footer-section">
         <h4>Enlaces</h4>
         <nav aria-label="Pie de página">
           <ul>
             <li><a routerLink="/sobre-nosotros">Sobre Nosotros</a></li>
-            <li><a routerLink="/planes">Planes</a></li>
-            <li><a routerLink="/premium">Premium</a></li>
+            <li><a [routerLink]="['/planes']">Planes</a></li>
+            <li><a [routerLink]="['/premium/plans']">Premium</a></li>
           </ul>
         </nav>
       </div>

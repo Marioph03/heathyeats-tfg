@@ -1,0 +1,338 @@
+/* ==========================
+   Global Reset & Base
+   ========================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  color: #333333;
+  box-sizing: border-box;
+  overflow-x: hidden; /* evita scroll horizontal */
+}
+
+/* ==========================
+   Toggle Switch (Light/Dark)
+   ========================== */
+.toggle-switch {
+  position: relative;
+  width: 100px;
+  height: 50px;
+  margin-right: 1rem;
+}
+
+.switch-label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #28292c;
+  border-radius: 25px;
+  border: 3px solid #28292c;
+  cursor: pointer;
+  position: relative;
+}
+
+.switch-label .checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-label .slider {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 25px;
+  background-color: #28292c;
+  transition: background-color 0.3s;
+}
+
+.switch-label .checkbox:checked + .slider {
+  background-color: #d8dbe0;
+}
+
+.switch-label .slider::before {
+  content: "";
+  position: absolute;
+  top: 10px; left: 10px;
+  width: 25px; height: 25px;
+  border-radius: 50%;
+  background-color: #28292c;
+  box-shadow: inset 12px -4px 0 0 #d8dbe0;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.switch-label .checkbox:checked + .slider::before {
+  transform: translateX(50px);
+  box-shadow: none;
+}
+
+/* ==========================
+   Purchase Container
+   ========================== */
+.purchase-container {
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.purchase-container > h2 {
+  margin-top: 1rem;
+  font-size: 2rem;
+  color: #2e5f37;
+}
+
+.loading {
+  font-style: italic;
+  margin: 1rem 0;
+}
+
+/* ==========================
+   Plans Grid & Cards
+   ========================== */
+.plans {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  background: #313131;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  width: 280px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.plan-name {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.price {
+  font-size: 3rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+.lists {
+  margin-top: 1.5rem;
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.list svg {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+
+.list span {
+  flex: 1;
+}
+
+/* ==========================
+   Action Button
+   ========================== */
+.action {
+  margin-top: 2rem;
+  width: 100%;
+  padding: 0.625rem 1.5rem;
+  border: 2px solid #ffffff;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 0.875rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.action:hover {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+/* ==========================
+   Modal & Forms
+   ========================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 320px;
+  box-shadow:
+    0 187px 75px rgba(0,0,0,0.01),
+    0 105px 63px rgba(0,0,0,0.05),
+    0 47px 47px rgba(0,0,0,0.09),
+    0 12px 26px rgba(0,0,0,0.1),
+    0 0px 0px rgba(0,0,0,0.1);
+}
+
+.modal form label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  color: #000000;
+}
+
+.modal form input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.buttons button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.buttons button:first-child {
+  background: #28a745;
+  color: #ffffff;
+}
+
+.buttons button:last-child {
+  background: #dc3545;
+  color: #ffffff;
+}
+
+/* ==========================
+   Purchase Modal Extras
+   ========================== */
+.payment--options {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.payment--options button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f2f2f2;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+
+.payment-icon {
+  width: 40px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+.separator .line {
+  flex: 1;
+  height: 1px;
+  background: #e8e8e8;
+  border: none;
+}
+
+.separator p {
+  margin: 0 1rem;
+  font-size: 0.875rem;
+  color: #8b8e98;
+}
+
+.credit-card-info--form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input_container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.split {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.split input {
+  flex: 1;
+}
+
+.input_field {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* ==========================
+   Utility & Misc
+   ========================== */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.light-label {
+  background-color: #ffffff;
+  color: #6b6b6b;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  display: inline-block;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #2e5f37;
+  margin-top: 4rem; /* espacio extra desde el top */
+  text-align: center;
+  font-weight: bold;
+}

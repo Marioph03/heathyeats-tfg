@@ -1,0 +1,42 @@
+<div class="settings-container">
+  <h2>Configuración</h2>
+
+  <form [formGroup]="form" (ngSubmit)="save()" class="settings-form">
+
+    <!-- Tema -->
+    <div class="form-group">
+      <label>Modo de tema</label>
+      <div class="radio-group">
+        <label *ngFor="let t of themes">
+          <input type="radio" formControlName="theme" [value]="t.value" /> {{ t.label }}
+        </label>
+      </div>
+    </div>
+
+    <!-- Idioma -->
+    <div class="form-group">
+      <label for="language">Idioma de la interfaz</label>
+      <select id="language" formControlName="language">
+        <option *ngFor="let lg of languages" [value]="lg.value">
+          {{ lg.label }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Notificaciones -->
+    <div class="form-group">
+      <label>
+        <input type="checkbox" formControlName="notifications" />
+        Recibir notificaciones
+      </label>
+    </div>
+
+    <!-- Mensajes -->
+    <div *ngIf="loading" class="status">Guardando…</div>
+    <div *ngIf="error" class="status error">{{ error }}</div>
+    <div *ngIf="successMessage" class="status success">{{ successMessage }}</div>
+
+    <button type="submit" [disabled]="form.pristine || loading">Guardar</button>
+    <button type="button" class="back-btn" [routerLink]="['/home']">Volver</button>
+  </form>
+</div>

@@ -1,7 +1,10 @@
 <ng-container *ngIf="loading">
   <p class="status">Cargando…</p>
 </ng-container>
-<div class="status error" *ngIf="error">{{ error }}</div>
+
+<div class="status error" *ngIf="error">
+  {{ error }}
+</div>
 
 <header class="site-header">
   <!-- Theme toggle -->
@@ -95,66 +98,77 @@
   </div>
 </header>
 
-<main>
-  <section *ngFor="let sec of sections" class="menu-section">
-    <h2 class="menu-section__title"> {{ sec.title }} </h2>
-    <div class="menu-list">
-      <div
-        class="card"
-        *ngFor="let meal of sec.meals"
-        (click)="selectMeal(meal)"
-      >
-        <div class="content">
-          <img [src]="meal.strMealThumb" [alt]="meal.strMeal" />
-          <div class="description">
-            <p class="title"><strong> {{ meal.strMeal }} </strong></p>
-            <p class="info"> {{meal.strCategory}} </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<main class="container plan-main">
+  <h1 class="plan-title">Planes Personalizados</h1>
+  <p class="plan-subtitle">
+    Elige entre generar tu plan manualmente o recibir recomendaciones con ayuda de nuestra IA nutricional.
+  </p>
 
-  <div class="detail-modal" *ngIf="selectedMealDetail">
-    <div class="modal-backdrop" (click)="closeDetail()"></div>
-    <div class="modal">
-      <button class="close-btn" (click)="closeDetail()">×</button>
-
-      <img
-        class="modal-img"
-        [src]="selectedMealDetail.strMealThumb"
-        [alt]="selectedMealDetail.strMeal"
-      />
-
-      <p class="modal-price">
-        <strong>Precio:</strong>
-        {{ price | currency:'EUR':'symbol':'1.2-2' }}
-      </p>
-
-      <div class="stock-control">
-        <button (click)="decreaseStock()">−</button>
-        <span>{{ stockCount }}</span>
-        <button (click)="increaseStock()">+</button>
-      </div>
-
-      <button class="action add-cart-btn" (click)="addToCart()">
-        Añadir al carrito
-      </button>
-
-      <!-- Datos de la receta en español -->
-      <h3>{{ selectedMealDetail.strMeal }}</h3>
-      <p><em>Categoría:</em> {{ selectedMealDetail.strCategory }}</p>
-      <p><em>Origen:</em> {{ selectedMealDetail.strArea }}</p>
-
-      <h4>Ingredientes:</h4>
-      <ul>
-        <li *ngFor="let ing of getIngredients(selectedMealDetail)">
-          {{ ing }}
-        </li>
-      </ul>
-
-      <h4>Instrucciones:</h4>
-      <p>{{ selectedMealDetail.strInstructions }}</p>
-    </div>
+  <div class="mode-switch" role="group" aria-label="Seleccionar modo">
+    <button
+      type="button"
+      [class.active]="mode === 'DIY'"
+    >
+      Hazlo tú
+    </button>
   </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="plan-form">
+    <div class="form-group">
+      <label for="caloriesPerDay">Kcal por día</label>
+      <input
+        id="caloriesPerDay"
+        type="number"
+        min="1000"
+        max="5000"
+        formControlName="caloriesPerDay"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="mealsPerDay">Comidas al día</label>
+      <input
+        id="mealsPerDay"
+        type="number"
+        min="1"
+        max="6"
+        formControlName="mealsPerDay"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="dietaryPreferences">Preferencias dietéticas</label>
+      <input
+        id="dietaryPreferences"
+        type="text"
+        formControlName="dietaryPreferences"
+        placeholder="Ej. vegano, sin gluten, keto"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="submit-btn"
+      [disabled]="form.invalid || loading"
+    >
+      {{ mode === 'DIY' ? 'Generar mi plan' : 'Pedir a la IA' }}
+    </button>
+  </form>
+
+  <section *ngIf="generatedPlan" class="plan-output" aria-live="polite">
+    <h2>Tu Plan Semanal</h2>
+    <ul>
+      <li *ngFor="let dia of planSemanal">
+        <strong>{{ dia.dia }}</strong>: {{ dia.receta.strMeal }}
+        <img [src]="dia.receta.strMealThumb" alt="{{ dia.receta.strMeal }}" width="120" />
+      </li>
+    </ul>
+    <pre>{{ generatedPlan }}</pre>
+  </section>
 </main>
+
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; Healthy Eats. Todos los derechos reservados.</p>
+  </div>
+</footer>

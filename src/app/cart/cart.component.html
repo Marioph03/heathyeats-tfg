@@ -1,0 +1,22 @@
+<!-- cart.component.html -->
+<div class="cart-container">
+  <h2>Tu Carrito</h2>
+  <ul *ngIf="items.length > 0">
+    <li *ngFor="let item of items">
+      <img [src]="item.meal.strMealThumb" [alt]="item.meal.strMeal" width="60" />
+      <strong>{{ item.meal.strMeal }}</strong>
+      <span>Cantidad: {{ item.quantity }}</span>
+      <span>Subtotal: €{{ item.quantity * item.price | number:'1.2-2' }}</span>
+    </li>
+  </ul>
+
+  <ng-template #empty>
+    <p>El carrito está vacío.</p>
+  </ng-template>
+  <div class="cart-total" *ngIf="items.length">
+    <strong>Total: €{{ total | number:'1.2-2' }}</strong>
+  </div>
+  <button class="purchase-btn" (click)="purchase()" [disabled]="!items.length">
+    Comprar
+  </button>
+</div>

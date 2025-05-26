@@ -10,7 +10,7 @@
     </label>
   </div>
 
-  <!-- Login box -->
+  <!-- Register box -->
   <div class="login wrap">
     <div class="login-header text-center mb-4">
       <img src="/Healthy_Eats_Logo.png"
@@ -21,35 +21,31 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <input
         formControlName="username"
-        name="username"
-        id="username"
         type="text"
         placeholder="Username"
         required>
 
       <input
         formControlName="full_name"
-        name="fullname"
-        id="fullname"
         type="text"
         placeholder="Full Name"
         required>
 
       <input
         formControlName="email"
-        name="email"
-        id="email"
         type="text"
         placeholder="Email"
         required>
 
+      <!-- Aquí cambiaamos a 'password' -->
       <input
-        formControlName="password_hash"
-        name="password"
-        id="password"
+        formControlName="password"
         type="password"
         placeholder="Password"
         required>
+
+      <!-- Campo oculto para rol -->
+      <input formControlName="rol" type="hidden">
 
       <input value="Registrarse"
              class="btn"

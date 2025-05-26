@@ -8,11 +8,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule
-  ],
+  imports: [ CommonModule, ReactiveFormsModule, RouterModule ],
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
@@ -65,9 +61,7 @@ export class UserComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.invalid) return;
-    const { email, password_hash } = this.loginForm.value;
-
-    console.log("datos: " + email + " " + password_hash);
+    const {email, password_hash} = this.loginForm.value;
 
     this.authService.logIn(email, password_hash).subscribe({
       next: () => {
@@ -75,8 +69,27 @@ export class UserComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       error: err => {
+        const status = err.status;
         const msg = err.error?.message || 'Ocurrió un error';
-        Swal.fire('Error', msg, 'error');
+
+        if (status === 401) {
+          Swal.fire({
+            title: 'Usuario no encontrado',
+            text: '¿Quieres crear una cuenta nueva?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, registrarme',
+            cancelButtonText: 'Cancelar'
+          }).then(result => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/register']);
+            }
+          });
+        } else if (status === 401) {
+          Swal.fire('Error', msg, 'error');
+        } else {
+          Swal.fire('Error', msg, 'error');
+        }
       }
     });
   }
@@ -96,7 +109,5 @@ export class UserComponent implements OnInit {
 
   toggleTheme(): void {
     this.isDarkTheme = !this.isDarkTheme;
-    this.renderer[this.isDarkTheme ? 'addClass' : 'removeClass'](document.body, 'dark-theme');
-    localStorage.setItem('theme', this.isDarkTheme ? 'dark' : 'light');
   }
 }

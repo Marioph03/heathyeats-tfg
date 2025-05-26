@@ -1,10 +1,10 @@
-import {Component, inject, Renderer2} from '@angular/core';
-import { NgIf, NgFor } from '@angular/common';
-import {RouterLink} from '@angular/router';
+import {Component, Inject, inject, Renderer2} from '@angular/core';
+import {Router, RouterLink} from '@angular/router';
+import {AuthService} from '../service/auth.service';
 
 @Component({
   selector: 'app-menu-list',
-  imports: [NgIf, NgFor, RouterLink],
+  imports: [RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   standalone: true
@@ -14,9 +14,12 @@ export class HomeComponent {
   currentYear = new Date().getFullYear();
 
   private renderer = inject(Renderer2);
+  protected authSrvc = inject(AuthService);
+  protected router = inject(Router);
 
   ngOnInit(): void {
     this.applySavedTheme();
+    this.authSrvc.isLoggedIn();
   }
 
   private applySavedTheme(): void {
@@ -33,4 +36,15 @@ export class HomeComponent {
     localStorage.setItem('theme', this.isDarkTheme ? 'dark' : 'light');
   }
 
+  logout(): void {
+    this.authSrvc.logout();
+  }
+
+  goToProfile(): void {
+    this.router.navigate(['/profile']);
+  }
+
+  goToSettings(): void {
+    this.router.navigate(['/settings']);
+  }
 }

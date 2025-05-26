@@ -1,0 +1,206 @@
+<!-- purchase.component.html -->
+
+<div class="purchase-container">
+  <!-- Header -->
+  <header class="site-header">
+    <!-- Theme toggle -->
+    <div class="toggle-switch me-3">
+      <label class="switch-label">
+        <input
+          type="checkbox"
+          class="checkbox"
+          [checked]="isDarkTheme"
+          (change)="toggleTheme()"
+        />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- Logo + Navigation -->
+    <div class="container header-container">
+      <a class="logo" routerLink="/home">Healthy Eats</a>
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li>
+            <a [routerLink]="['/home']" title="Inicio">
+              <i class="bi bi-house-door fs-3"></i>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/menu']" title="Menú">
+              <i class="bi bi-card-list fs-3"></i>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/planes']" title="Planes">
+              <i class="bi bi-calendar-check fs-3"></i>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/premium/plans']" title="Premium">
+              <i class="bi bi-star-fill fs-3"></i>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/contacto']" title="Contacto">
+              <i class="bi bi-envelope fs-3"></i>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/carrito']" title="Carrito">
+              <i class="bi bi-cart"></i>
+            </a>
+          </li>
+
+          <!-- Popup-dropdown de usuario -->
+          <li>
+            <label class="popup">
+              <input type="checkbox" />
+              <div tabindex="0" class="burger">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="white"
+                  height="20"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2c2.757 0 5 2.243 5 5.001 0 2.756-2.243 5-5 5s-5-2.244-5-5c0-2.758 2.243-5.001 5-5.001zm0-2c-3.866 0-7 3.134-7 7.001 0 3.865 3.134 7 7 7s7-3.135 7-7c0-3.867-3.134-7.001-7-7.001zm6.369 13.353c-.497.498-1.057.931-1.658 1.302 2.872 1.874 4.378 5.083 4.972 7.346h-19.387c.572-2.29 2.058-5.503 4.973-7.358-.603-.374-1.162-.811-1.658-1.312-4.258 3.072-5.611 8.506-5.611 10.669h24c0-2.142-1.44-7.557-5.631-10.647z"
+                  ></path>
+                </svg>
+              </div>
+              <nav class="popup-window">
+                <legend>Usuario</legend>
+                <ul>
+                  <li><button (click)="router.navigate(['/profile'])">
+                    <i class="bi bi-person-circle"></i>
+                    <span>Perfil</span>
+                  </button></li>
+                  <li><button (click)="router.navigate(['/settings'])">
+                    <i class="bi bi-gear"></i>
+                    <span>Configuración</span>
+                  </button></li>
+                  <hr />
+                  <li><button (click)="authSrvc.logout()">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                  </button></li>
+                </ul>
+              </nav>
+            </label>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page title -->
+  <h2 class="title">Elige tu plan premium</h2>
+
+  <!-- Loading state -->
+  <div *ngIf="loading" class="loading">Cargando planes…</div>
+
+  <!-- Plans list -->
+  <div class="plans" *ngIf="!loading">
+    <div *ngFor="let plan of plans" class="card">
+      <h3 class="plan-name">{{ plan.name }}</h3>
+      <p class="price">{{ plan.price | currency:'EUR' }}</p>
+      <ul class="lists">
+        <li class="list" *ngFor="let b of plan.benefits">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" viewBox="0 0 16 16">
+            <path
+              d="M13.485 1.929a.75.75 0 010 1.06l-7.07 7.071-3.182-3.182a.75.75 0 011.061-1.061l2.12 2.12 6.01-6.01a.75.75 0 011.061 0z"
+            />
+          </svg>
+          <span>{{ b }}</span>
+        </li>
+      </ul>
+      <button class="action" (click)="openPaymentModal(plan)">Comprar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de pago -->
+<div class="modal-backdrop" *ngIf="showModal">
+  <div class="modal">
+    <form class="form" #paymentForm="ngForm" (ngSubmit)="confirmPayment(paymentForm.value)">
+      <!-- Payment options -->
+      <div class="payment--options">
+        <button name="paypal" type="button">
+          <img src="assets/icons/paypal.png" alt="PayPal" class="payment-icon" />
+          <span>PayPal</span>
+        </button>
+        <button name="apple-pay" type="button">
+          <img src="assets/icons/apple-pay.png" alt="Apple Pay" class="payment-icon" />
+          <span>Apple Pay</span>
+        </button>
+        <button name="google-pay" type="button">
+          <img src="assets/icons/google-pay.png" alt="Google Pay" class="payment-icon" />
+          <span>Google Pay</span>
+        </button>
+      </div>
+
+      <!-- Separator -->
+      <div class="separator">
+        <hr class="line" />
+        <p>o paga con tarjeta</p>
+        <hr class="line" />
+      </div>
+
+      <!-- Credit card form -->
+      <div class="credit-card-info--form">
+        <div class="input_container">
+          <label class="light-label">Nombre completo del titular</label>
+          <input
+            class="input_field"
+            name="cardHolder"
+            ngModel
+            required
+            placeholder="Introduce tu nombre completo"
+            type="text"
+          />
+        </div>
+        <div class="input_container">
+          <label class="light-label">Número de tarjeta</label>
+          <input
+            class="input_field"
+            name="cardNumber"
+            ngModel
+            required
+            placeholder="0000 0000 0000 0000"
+            type="text"
+          />
+        </div>
+        <div class="input_container">
+          <label class="light-label">Fecha / CVV</label>
+          <div class="split">
+            <input
+              class="input_field"
+              name="expiry"
+              ngModel
+              required
+              placeholder="MM/AA"
+              type="text"
+            />
+            <input
+              class="input_field"
+              name="cvc"
+              ngModel
+              required
+              placeholder="CVV"
+              type="text"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="buttons">
+        <button type="submit" class="purchase--btn" [disabled]="paymentProcessing || !paymentForm.valid">
+          {{ paymentProcessing ? 'Procesando…' : 'Pagar' }}
+        </button>
+        <button type="button" class="purchase--btn cancel" (click)="closeModal()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
