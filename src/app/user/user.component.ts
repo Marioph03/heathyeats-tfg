@@ -69,10 +69,11 @@ export class UserComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       error: err => {
-        const status = err.status;
         const msg = err.error?.message || 'Ocurrió un error';
 
-        if (status === 401) {
+        if (msg === 'Contraseña incorrecta') {
+          Swal.fire('Contraseña incorrecta', 'Ha introducido mal su contraseña, vuelva a intentarlo', 'error');
+        } else if (msg === 'Usuario no encontrado') {
           Swal.fire({
             title: 'Usuario no encontrado',
             text: '¿Quieres crear una cuenta nueva?',
@@ -85,8 +86,6 @@ export class UserComponent implements OnInit {
               this.router.navigate(['/register']);
             }
           });
-        } else if (status === 401) {
-          Swal.fire('Error', msg, 'error');
         } else {
           Swal.fire('Error', msg, 'error');
         }

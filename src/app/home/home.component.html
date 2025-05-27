@@ -190,7 +190,7 @@
         <h4>Enlaces</h4>
         <nav aria-label="Pie de página">
           <ul>
-            <li><a routerLink="/sobre-nosotros">Sobre Nosotros</a></li>
+            <li><a [routerLink]="['/contacto']">Sobre Nosotros</a></li>
             <li><a [routerLink]="['/planes']">Planes</a></li>
             <li><a [routerLink]="['/premium/plans']">Premium</a></li>
           </ul>
@@ -199,9 +199,11 @@
       <div class="footer-section">
         <h4>Síguenos</h4>
         <div class="social-links">
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          <ul>
+          <li><a href="https://www.linkedin.com/in/mario-prada-14828a1b1/" aria-label="Linkedin">Linkedin<i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+          <li><a href="https://github.com/Marioph03" aria-label="Github">Github<i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+          <li><a href="https://www.instagram.com/_marioprada_/?__pwa=1" aria-label="Instagram">Instagram<i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+          </ul>
         </div>
       </div>
     </div>

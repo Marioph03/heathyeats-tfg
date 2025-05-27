@@ -1,0 +1,317 @@
+.portfolio {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f2f2f2;
+  border-radius: 12px;
+  color: #222;
+
+  h1, h2 {
+    color: #2e5f37;
+  }
+
+  a {
+    color: #1b8170;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .intro, .info, .trayectoria {
+    margin-bottom: 2rem;
+  }
+
+  .portfolio-footer {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+  }
+}
+
+.dark-theme .portfolio {
+  background-color: #2b2b2b;
+  color: #fff;
+
+  h1, h2 {
+    color: #a8c66c;
+  }
+
+  a {
+    color: #86e1cc;
+  }
+
+  .portfolio-footer {
+    color: #ccc;
+  }
+}
+
+.toggle-switch {
+  position: relative;
+  width: 100px;
+  height: 50px;
+  --light: #d8dbe0;
+  --dark: #28292c;
+  --link: rgb(27, 129, 112);
+  --link-hover: rgb(24, 94, 82);
+}
+
+.switch-label {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  background-color: var(--dark);
+  border-radius: 25px;
+  cursor: pointer;
+  border: 3px solid var(--dark);
+}
+
+.checkbox {
+  position: absolute;
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.checkbox:checked ~ .slider {
+  background-color: var(--light);
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  -webkit-box-shadow: inset 12px -4px 0px 0px var(--light);
+  box-shadow: inset 12px -4px 0px 0px var(--light);
+  background-color: var(--dark);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.checkbox:checked ~ .slider::before {
+  -webkit-transform: translateX(50px);
+  -ms-transform: translateX(50px);
+  transform: translateX(50px);
+  background-color: var(--dark);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #121212;
+    --color-text: #e0e0e0;
+    --color-footer: #0d170e;
+    --header-bg: #0d170e;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.home-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  margin: 0;
+  padding: 0;
+}
+
+.site-header {
+  background-color: #1f3b25;
+  color: #fff;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: opacity 0.2s;
+}
+
+.nav-links a:hover {
+  opacity: 0.8;
+}
+
+.perfil-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.perfil-foto {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-image: url('../../../public/assets/Foto Curriculum.png');
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.perfil-info {
+  flex: 1;
+  min-width: 250px;
+
+  h1 {
+    margin: 0;
+  }
+
+  p {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+/* From Uiverse.io by dalbrechtmartin */
+.book {
+  position: relative;
+  border-radius: 10px;
+  width: 180px;
+  height: 250px;
+  background-color: whitesmoke;
+  -webkit-box-shadow: 1px 1px 5px #000;
+  box-shadow: 1px 1px 5px #000;
+  -webkit-transform: preserve-3d;
+  background-image: url('../../../public/assets/proyecto.jpg');
+  -ms-transform: preserve-3d;
+  transform: preserve-3d;
+  -webkit-perspective: 2000px;
+  perspective: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #498136;
+  transition-duration: 0.5s;
+}
+
+.cover,
+.inner {
+  top: 0;
+  position: absolute;
+  background-color: lightgray;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-transform-origin: 0;
+  -ms-transform-origin: 0;
+  background-image: url('../../../public/assets/proyecto.jpg');
+  transform-origin: 0;
+  -webkit-box-shadow: 1px 1px 5px #000;
+  box-shadow: 1px 1px 5px #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.book:hover .cover {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-transform: rotatey(70deg);
+  -ms-transform: rotatey(70deg);
+  transform: rotatey(-70deg);
+}
+
+.book:hover .inner {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  transform: rotateZ(10deg) rotateX(-3deg) rotateY(-10deg) translateX(140px);
+  -webkit-box-shadow: 1px 1px 20px #000a;
+  box-shadow: 1px 1px 20px #000a;
+}
+
+.book:hover {
+  transform: rotateZ(-10deg);
+}
+.text {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.inner-foto1 {
+  background-image: url('../../../public/assets/pokemon.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.inner-foto2 {
+  background-image: url('../../../public/assets/Gestor_Productos.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.inner-foto3 {
+  background-image: url('../../../public/assets/Gestor_Empresas.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.book-container {
+  display: flex;
+  gap: 120px; /* Espacio entre las cards */
+  flex-wrap: wrap; /* Que se ajusten a varias líneas si no caben */
+  justify-content: center; /* Centrado opcional */
+}

@@ -11,6 +11,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {SettingsComponent} from './settings/settings.component';
 import {AuthGuard} from './guards/auth.guard';
 import {CartComponent} from './cart/cart.component';
+import {ContactComponent} from './contact/contact.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: 'planes', component: PlanPersonalizadoComponent },
   { path: 'premium/plans', component: PurchaseComponent },
   { path: 'carrito', component: CartComponent },
+  { path: 'contacto', component: ContactComponent },
   {
     path: 'premium/features',
     component: PremiumFeaturesComponent,
