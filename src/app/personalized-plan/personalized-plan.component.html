@@ -6,25 +6,13 @@
   {{ error }}
 </div>
 
-<header class="site-header">
-  <!-- Theme toggle -->
-  <div class="toggle-switch me-3">
-    <label class="switch-label">
-      <input
-        type="checkbox"
-        class="checkbox"
-        [checked]="isDarkTheme"
-        (change)="toggleTheme()"
-      />
-      <span class="slider"></span>
-    </label>
-  </div>
-
+<header class="site-header py-2">
   <!-- Logo + Navigation -->
-  <div class="container header-container">
-    <a class="logo" routerLink="/home">Healthy Eats</a>
-    <nav aria-label="Main navigation">
-      <ul class="nav-links">
+  <!-- Logo + Navigation -->
+  <div class="container-fluid header-container d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 px-3">
+    <a class="logo me-auto me-lg-5" routerLink="/home">Healthy Eats</a>
+    <nav class="mt-2 mt-md-0" aria-label="Main navigation">
+      <ul class="nav-links d-flex flex-wrap justify-content-center justify-content-md-end align-items-center gap-3">
         <li>
           <a [routerLink]="['/home']" title="Inicio">
             <i class="bi bi-house-door fs-3"></i>
@@ -76,19 +64,25 @@
             <nav class="popup-window">
               <legend>Usuario</legend>
               <ul>
-                <li><button (click)="router.navigate(['/profile'])">
-                  <i class="bi bi-person-circle"></i>
-                  <span>Perfil</span>
-                </button></li>
-                <li><button (click)="router.navigate(['/settings'])">
-                  <i class="bi bi-gear"></i>
-                  <span>Configuración</span>
-                </button></li>
+                <li>
+                  <button (click)="router.navigate(['/profile'])">
+                    <i class="bi bi-person-circle"></i>
+                    <span>Perfil</span>
+                  </button>
+                </li>
+                <li>
+                  <button (click)="router.navigate(['/settings'])">
+                    <i class="bi bi-gear"></i>
+                    <span>Configuración</span>
+                  </button>
+                </li>
                 <hr />
-                <li><button (click)="authSrvc.logout()">
-                  <i class="bi bi-box-arrow-right"></i>
-                  <span>Logout</span>
-                </button></li>
+                <li>
+                  <button (click)="authSrvc.logout()">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                  </button>
+                </li>
               </ul>
             </nav>
           </label>
@@ -98,13 +92,13 @@
   </div>
 </header>
 
-<main class="container plan-main">
-  <h1 class="plan-title">Planes Personalizados</h1>
-  <p class="plan-subtitle">
+<main class="container my-5">
+  <h1 class="plan-title text-center">Planes Personalizados</h1>
+  <p class="plan-subtitle text-center mb-4">
     Elige entre generar tu plan manualmente o recibir recomendaciones con ayuda de nuestra IA nutricional.
   </p>
 
-  <div class="mode-switch" role="group" aria-label="Seleccionar modo">
+  <div class="mode-switch d-flex justify-content-center gap-3 mb-4" role="group" aria-label="Seleccionar modo">
     <button
       type="button"
       [class.active]="mode === 'DIY'"
@@ -113,36 +107,39 @@
     </button>
   </div>
 
-  <form [formGroup]="form" (ngSubmit)="submit()" class="plan-form">
+  <form [formGroup]="form" (ngSubmit)="submit()" class="plan-form row g-3">
     <div class="form-group">
-      <label for="caloriesPerDay">Kcal por día</label>
+      <label for="caloriesPerDay" class="form-label">Kcal por día</label>
       <input
         id="caloriesPerDay"
         type="number"
         min="1000"
         max="5000"
+        class="form-control"
         formControlName="caloriesPerDay"
         required
       />
     </div>
     <div class="form-group">
-      <label for="mealsPerDay">Comidas al día</label>
+      <label for="mealsPerDay" class="form-label">Comidas al día</label>
       <input
         id="mealsPerDay"
         type="number"
         min="1"
+        class="form-control"
         max="6"
         formControlName="mealsPerDay"
         required
       />
     </div>
     <div class="form-group">
-      <label for="dietaryPreferences">Preferencias dietéticas</label>
+      <label for="dietaryPreferences" class="form-label">Preferencias dietéticas</label>
       <input
         id="dietaryPreferences"
         type="text"
+        class="form-control"
         formControlName="dietaryPreferences"
-        placeholder="Ej. vegano, sin gluten, keto"
+        placeholder="Ej. vegan, chicken, starter"
       />
     </div>
 
@@ -155,20 +152,20 @@
     </button>
   </form>
 
-  <section *ngIf="generatedPlan" class="plan-output" aria-live="polite">
-    <h2>Tu Plan Semanal</h2>
-    <ul>
-      <li *ngFor="let dia of planSemanal">
+  <section *ngIf="generatedPlan" class="plan-output mt-5" aria-live="polite">
+    <h2 class="text-center mb-4">Tu Plan Semanal</h2>
+    <ul class="list-unstyled row g-4">
+      <li *ngFor="let dia of planSemanal" class="col-md-4 text-center">
         <strong>{{ dia.dia }}</strong>: {{ dia.receta.strMeal }}
-        <img [src]="dia.receta.strMealThumb" alt="{{ dia.receta.strMeal }}" width="120" />
+        <img [src]="dia.receta.strMealThumb" alt="{{ dia.receta.strMeal }}" width="120" class="img-fluid rounded mt-2"/>
       </li>
     </ul>
-    <pre>{{ generatedPlan }}</pre>
+    <pre class="bg-light p-3 rounded mt-4">{{ generatedPlan }}</pre>
   </section>
 </main>
 
-<footer class="footer">
+<footer class="footer bg-dark text-white py-3 mt-5 text-center">
   <div class="footer-content">
-    <p>&copy; Healthy Eats. Todos los derechos reservados.</p>
+    <p class="mb-0">&copy; Healthy Eats. Todos los derechos reservados.</p>
   </div>
 </footer>

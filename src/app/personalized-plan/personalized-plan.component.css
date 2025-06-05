@@ -1,104 +1,12 @@
-body,
-html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #ffffff;
-  color: #333333;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
-  color: #fff;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1rem;
-}
-
-.nav-links a:hover {
-  opacity: 0.8;
-}
-
-.toggle-switch {
-  position: fixed;
-  width: 100px;
-  height: 50px;
-  --light: #d8dbe0;
-  --dark: #28292c;
-  --link: rgb(27, 129, 112);
-  --link-hover: rgb(24, 94, 82);
-}
-
-.switch-label {
-  position: absolute;
-  width: 100%;
-  height: 50px;
-  background-color: var(--dark);
-  border-radius: 25px;
-  cursor: pointer;
-  border: 3px solid var(--dark);
-}
-
-.checkbox {
-  position: absolute;
-  display: none;
-}
-
-.slider {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 25px;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.checkbox:checked ~ .slider {
-  background-color: var(--light);
-}
-
-.slider::before {
-  content: "";
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  -webkit-box-shadow: inset 12px -4px 0px 0px var(--light);
-  box-shadow: inset 12px -4px 0px 0px var(--light);
-  background-color: var(--dark);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.checkbox:checked ~ .slider::before {
-  -webkit-transform: translateX(50px);
-  -ms-transform: translateX(50px);
-  transform: translateX(50px);
-  background-color: var(--dark);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-/* Main Plan Section */
+/* ================================
+   Sección principal del plan
+   ================================ */
 .container {
   max-width: 960px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .plan-main {
@@ -199,6 +107,9 @@ html {
   color: #111;
 }
 
+/* ================================
+   Estado
+   ================================ */
 .status {
   text-align: center;
   padding: 1rem;
@@ -209,183 +120,35 @@ html {
   color: #e63946;
 }
 
+/* ================================
+   Pie de página
+   ================================ */
 .footer {
   background-color: #1f3b25;
   color: #fff;
   text-align: center;
   padding: 1rem;
+  margin-top: 2rem;
 }
 
+/* ================================
+   Iconos
+   ================================ */
 .nav-links i {
   font-size: 2rem;
 }
 
-/* ==========================
-   Header (necesario para posicionar el popup)
-   ========================== */
+/* ================================
+   Cabecera
+   ================================ */
 .site-header {
   position: relative;
-  /* resto de tus estilos... */
+  z-index: 5;
 }
 
-/* ==========================
-   Popup-dropdown Usuario
-   ========================== */
-.popup {
-  /* Variables */
-  --burger-line-width: 1.125em;
-  --burger-line-height: 0.125em;
-  --burger-offset: 0.625em;
-  --burger-bg: #00bf63;
-  --burger-color: #e3d7d7;
-  --burger-line-border-radius: 0.1875em;
-  --burger-diameter: 3.125em;
-  --burger-btn-border-radius: calc(var(--burger-diameter) / 2);
-  --burger-line-transition: 0.3s;
-  --burger-transition: all 0.1s ease-in-out;
-  --burger-hover-scale: 1.1;
-  --burger-active-scale: 0.95;
-  --burger-enable-outline-color: #00bf63;
-  --burger-enable-outline-width: 0.125em;
-  --burger-enable-outline-offset: var(--burger-enable-outline-width);
-
-  --nav-padding-x: 0.25em;
-  --nav-padding-y: 0.625em;
-  --nav-border-radius: 0.375em;
-  --nav-border-color: #676464;
-  --nav-border-width: 0.0625em;
-  --nav-shadow-color: rgba(0, 0, 0, 0.2);
-  --nav-shadow-width: 0 1px 5px;
-  --nav-bg: #676464;
-  --nav-font-family: 'Poppins', sans-serif;
-  --nav-default-scale: 0.8;
-  --nav-active-scale: 1;
-  --nav-position-left: unset;
-  --nav-position-right: 0;             /* esto sitúa el popup a la derecha */
-
-  --nav-title-size: 0.625em;
-  --nav-title-color: #e7dede;
-  --nav-title-padding-x: 1rem;
-  --nav-title-padding-y: 0.25em;
-
-  --nav-button-padding-x: 1rem;
-  --nav-button-padding-y: 0.375em;
-  --nav-button-border-radius: 0.375em;
-  --nav-button-font-size: 17px;
-  --nav-button-hover-bg: #00bf63;
-  --nav-button-hover-text-color: #fff;
-  --nav-button-distance: 0.875em;
-
-  --underline-border-width: 0.0625em;
-  --underline-border-color: #ccc;
-  --underline-margin-y: 0.3125em;
-}
-
-/* posicionamiento dentro del header */
-.popup {
-  display: inline-block;
-  position: absolute;
-  top: 0.75rem;    /* ajusta según el padding de tu header */
-  right: 1rem;
-  text-rendering: optimizeLegibility;
-  z-index: 1000;
-}
-
-.popup input {
-  display: none;
-}
-
-/* Botón/User icon */
-.burger {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--burger-bg) !important;
-  width: var(--burger-diameter);
-  height: var(--burger-diameter);
-  border-radius: var(--burger-btn-border-radius);
-  border: none;
-  cursor: pointer;
-  overflow: hidden;
-  transition: var(--burger-transition);
-  outline: var(--burger-enable-outline-width) solid transparent;
-  outline-offset: 0;
-}
-.burger:hover {
-  transform: scale(var(--burger-hover-scale));
-}
-.burger:active {
-  transform: scale(var(--burger-active-scale));
-}
-.burger:focus:not(:hover) {
-  outline-color: var(--burger-enable-outline-color);
-  outline-offset: var(--burger-enable-outline-offset);
-}
-
-/* Contenedor del menú */
-.popup-window {
-  transform: scale(var(--nav-default-scale));
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  top: calc(var(--burger-diameter) + var(--burger-enable-outline-width) * 2);
-  right: var(--nav-position-right);
-  left: var(--nav-position-left);
-  padding: var(--nav-padding-y) var(--nav-padding-x);
-  background: var(--nav-bg);
-  font-family: var(--nav-font-family);
-  border-radius: var(--nav-border-radius);
-  box-shadow: var(--nav-shadow-width) var(--nav-shadow-color);
-  border: var(--nav-border-width) solid var(--nav-border-color);
-  transition: var(--burger-transition);
-  margin-top: 0.5rem;
-}
-.popup-window legend {
-  padding: var(--nav-title-padding-y) var(--nav-title-padding-x);
-  margin: 0;
-  color: var(--nav-title-color);
-  font-size: var(--nav-title-size);
-  text-transform: uppercase;
-}
-.popup-window ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-.popup-window hr {
-  margin: var(--underline-margin-y) 0;
-  border: none;
-  border-bottom: var(--underline-border-width) solid var(--underline-border-color);
-}
-
-/* Botones del menú */
-.popup-window ul button {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: var(--nav-button-distance);
-  padding: var(--nav-button-padding-y) var(--nav-button-padding-x);
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: var(--nav-button-font-size);
-  color: var(--burger-color);
-  border-radius: var(--nav-button-border-radius);
-  transition: background 0.2s, color 0.2s;
-}
-.popup-window ul button:hover,
-.popup-window ul button:focus-visible {
-  background: var(--nav-button-hover-bg);
-  color: var(--nav-button-hover-text-color);
-}
-
-/* Mostrar menú al pulsar */
-.popup input:checked + .burger + .popup-window {
-  transform: scale(var(--nav-active-scale));
-  visibility: visible;
-  opacity: 1;
-}
-
+/* ================================
+   Plan semanal
+   ================================ */
 .weekly-plan {
   margin-top: 2rem;
 }
@@ -393,6 +156,7 @@ html {
 .weekly-plan ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .weekly-plan li {
@@ -405,8 +169,5 @@ html {
 .weekly-plan img {
   border-radius: 8px;
   max-height: 100px;
-}
-
-body.dark-theme .form-group label {
-  color: #ffffff;
+  object-fit: cover;
 }

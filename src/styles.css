@@ -619,7 +619,7 @@ li strong {
 li span {
   min-width: 120px;
   text-align: right;
-  color: #555;
+  color: #f3efef;
   font-size: 0.95rem;
 }
 
@@ -652,4 +652,66 @@ li span {
 
 .purchase-btn:hover:not(:disabled) {
   background-color: #23935f;
+}
+
+@media (max-width: 767px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center !important;
+    gap: 0.5rem;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .features-grid .card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .features-grid svg {
+    margin-bottom: 1rem;
+  }
+
+  .step {
+    margin-bottom: 2rem;
+  }
+
+  .steps {
+    flex-direction: column;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .social-links ul {
+    justify-content: center;
+  }
+
+  .popup .popup-window {
+    right: 0;
+    left: auto;
+    width: 100%;
+  }
+
+  .burger {
+    display: flex;
+    justify-content: center;
+  }
 }

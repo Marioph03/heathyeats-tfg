@@ -1,7 +1,6 @@
 <div class="home-container">
   <!-- Site Navigation Header -->
-  <!-- Header con menú desplegable de usuario -->
-  <header class="site-header">
+  <header class="site-header py-2">
     <!-- Theme toggle -->
     <div class="toggle-switch me-3">
       <label class="switch-label">
@@ -16,10 +15,10 @@
     </div>
 
     <!-- Logo + Navigation -->
-    <div class="container header-container">
-      <a class="logo" routerLink="/home">Healthy Eats</a>
-      <nav aria-label="Main navigation">
-        <ul class="nav-links">
+    <div class="container-fluid header-container d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 px-3">
+    <a class="logo me-auto me-lg-5" routerLink="/home">Healthy Eats</a>
+      <nav class="mt-2 mt-md-0" aria-label="Main navigation">
+        <ul class="nav-links d-flex flex-wrap justify-content-center justify-content-md-end align-items-center gap-3">
           <li>
             <a [routerLink]="['/home']" title="Inicio">
               <i class="bi bi-house-door fs-3"></i>
@@ -71,19 +70,25 @@
               <nav class="popup-window">
                 <legend>Usuario</legend>
                 <ul>
-                  <li><button (click)="router.navigate(['/profile'])">
-                    <i class="bi bi-person-circle"></i>
-                    <span>Perfil</span>
-                  </button></li>
-                  <li><button (click)="router.navigate(['/settings'])">
-                    <i class="bi bi-gear"></i>
-                    <span>Configuración</span>
-                  </button></li>
+                  <li>
+                    <button (click)="router.navigate(['/profile'])">
+                      <i class="bi bi-person-circle"></i>
+                      <span>Perfil</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button (click)="router.navigate(['/settings'])">
+                      <i class="bi bi-gear"></i>
+                      <span>Configuración</span>
+                    </button>
+                  </li>
                   <hr />
-                  <li><button (click)="authSrvc.logout()">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Logout</span>
-                  </button></li>
+                  <li>
+                    <button (click)="authSrvc.logout()">
+                      <i class="bi bi-box-arrow-right"></i>
+                      <span>Logout</span>
+                    </button>
+                  </li>
                 </ul>
               </nav>
             </label>
@@ -94,21 +99,20 @@
   </header>
 
   <!-- Sección Hero -->
-  <header class="hero">
+  <header class="hero py-5 text-center">
     <div class="container hero-content">
-      <h1>¡Tu comida saludable a domicilio!</h1>
-      <p class="hero-subtitle">Planes personalizados según tus necesidades y objetivos nutricionales</p>
-      <button class="cta-button" [routerLink]="['/menu']">Descubre tu plan ideal</button>
+      <h1 class="display-4">¡Tu comida saludable a domicilio!</h1>
+      <p class="hero-subtitle lead">Planes personalizados según tus necesidades y objetivos nutricionales</p>
+      <button class="cta-button mt-3" [routerLink]="['/menu']">Descubre tu plan ideal</button>
     </div>
   </header>
 
   <!-- Características Principales -->
-  <section class="features">
-    <div class="container">
-      <h2 class="section-title">¿Por qué elegirnos?</h2>
-      <div class="features-grid">
-
-        <div class="card">
+  <section class="features py-5">
+    <div class="container-fluid px-3 px-md-5">
+    <h2 class="section-title text-center mb-5">¿Por qué elegirnos?</h2>
+      <div class="features-grid row row-cols-1 row-cols-md-3 g-4">
+        <div class="card col">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <image
               href="assets/dieta.jpg"
@@ -122,11 +126,12 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card col">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <image
               href="assets/comida-a-domicilio.jpg"
               x="0" y="0"
+              class="img-fluid mb-3 rounded"
               width="24" height="24"
               preserveAspectRatio="xMidYMid slice" />
           </svg>
@@ -136,7 +141,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card col">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <image
               href="assets/plan-de-nutricion.jpg"
@@ -149,27 +154,26 @@
             <p class="card__description">Acceso a nutricionistas profesionales en nuestra sección premium</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
   <!-- Cómo Funciona -->
-  <section class="how-it-works">
-    <div class="container">
-      <h2 class="section-title">¿Cómo funciona?</h2>
-      <ol class="steps" aria-label="Pasos de uso">
-        <li class="step">
+  <section class="how-it-works py-5">
+    <div class="container-fluid px-3 px-md-5">
+      <h2 class="section-title text-center mb-5">¿Cómo funciona?</h2>
+      <ol class="steps row justify-content-center gy-4" aria-label="Pasos de uso">
+        <li class="step col-12 col-md-4 text-center">
           <span class="step-number">1</span>
           <h3>Personaliza tu Plan</h3>
           <p>Cuéntanos tus preferencias y objetivos</p>
         </li>
-        <li class="step">
+        <li class="step col-12 col-md-4 text-center">
           <span class="step-number">2</span>
           <h3>Selecciona tus Comidas</h3>
           <p>Elige entre nuestros menús semanales</p>
         </li>
-        <li class="step">
+        <li class="step col-12 col-md-4 text-center">
           <span class="step-number">3</span>
           <h3>Recibe en Casa</h3>
           <p>Disfruta de tu comida saludable</p>
@@ -179,36 +183,36 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-content">
-      <div class="footer-section">
-        <h4>Contacto</h4>
-        <p>Email: <a href="mailto:healthyeats@gmail.com">healthyeats&#64;gmail.com</a></p>
-        <p>Tel: 680 59 98 37</p>
-      </div>
-      <div class="footer-section">
-        <h4>Enlaces</h4>
-        <nav aria-label="Pie de página">
-          <ul>
-            <li><a [routerLink]="['/contacto']">Sobre Nosotros</a></li>
-            <li><a [routerLink]="['/planes']">Planes</a></li>
-            <li><a [routerLink]="['/premium/plans']">Premium</a></li>
-          </ul>
-        </nav>
-      </div>
-      <div class="footer-section">
-        <h4>Síguenos</h4>
-        <div class="social-links">
-          <ul>
-          <li><a href="https://www.linkedin.com/in/mario-prada-14828a1b1/" aria-label="Linkedin">Linkedin<i class="fab fa-facebook" aria-hidden="true"></i></a></li>
-          <li><a href="https://github.com/Marioph03" aria-label="Github">Github<i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-          <li><a href="https://www.instagram.com/_marioprada_/?__pwa=1" aria-label="Instagram">Instagram<i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+  <footer class="footer py-4">
+    <div class="container-fluid px-3 px-md-5">
+      <div class="footer-content row row-cols-1 row-cols-md-3 text-center text-md-start">
+        <div class="footer-section col mb-3">
+          <h4>Contacto</h4>
+          <p>Email: <a href="mailto:healthyeats@gmail.com">healthyeats&#64;gmail.com</a></p>
+          <p>Tel: 680 59 98 37</p>
+        </div>
+        <div class="footer-section col mb-3">
+          <h4>Enlaces</h4>
+          <nav aria-label="Pie de página">
+            <ul>
+              <li><a [routerLink]="['/contacto']">Sobre Nosotros</a></li>
+              <li><a [routerLink]="['/planes']">Planes</a></li>
+              <li><a [routerLink]="['/premium/plans']">Premium</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer-section col mb-3">
+          <h4>Síguenos</h4>
+          <ul class="list-unstyled d-flex gap-3 justify-content-center justify-content-md-start">
+            <li><a href="https://www.linkedin.com/in/mario-prada-14828a1b1/" aria-label="Linkedin">Linkedin</a></li>
+            <li><a href="https://github.com/Marioph03" aria-label="Github">Github</a></li>
+            <li><a href="https://www.instagram.com/_marioprada_/?__pwa=1" aria-label="Instagram">Instagram</a></li>
           </ul>
         </div>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; {{ currentYear }} Tu Comida Online. Todos los derechos reservados.</p>
+      <div class="footer-bottom text-center pt-3">
+        <p>&copy; {{ currentYear }} Tu Comida Online. Todos los derechos reservados.</p>
+      </div>
     </div>
   </footer>
 </div>

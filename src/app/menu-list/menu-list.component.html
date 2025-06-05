@@ -1,9 +1,9 @@
 <ng-container *ngIf="loading">
-  <p class="status">Cargando…</p>
+  <p class="status text-center py-3">Cargando…</p>
 </ng-container>
-<div class="status error" *ngIf="error">{{ error }}</div>
+<div class="status error text-center text-danger py-2" *ngIf="error">{{ error }}</div>
 
-<header class="site-header">
+<header class="site-header py-2">
   <!-- Theme toggle -->
   <div class="toggle-switch me-3">
     <label class="switch-label">
@@ -18,10 +18,10 @@
   </div>
 
   <!-- Logo + Navigation -->
-  <div class="container header-container">
-    <a class="logo" routerLink="/home">Healthy Eats</a>
-    <nav aria-label="Main navigation">
-      <ul class="nav-links">
+  <div class="container-fluid header-container d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 px-3">
+    <a class="logo me-auto me-lg-5" routerLink="/home">Healthy Eats</a>
+    <nav class="mt-2 mt-md-0" aria-label="Main navigation">
+      <ul class="nav-links d-flex flex-wrap justify-content-center justify-content-md-end align-items-center gap-3">
         <li>
           <a [routerLink]="['/home']" title="Inicio">
             <i class="bi bi-house-door fs-3"></i>
@@ -73,19 +73,25 @@
             <nav class="popup-window">
               <legend>Usuario</legend>
               <ul>
-                <li><button (click)="router.navigate(['/profile'])">
-                  <i class="bi bi-person-circle"></i>
-                  <span>Perfil</span>
-                </button></li>
-                <li><button (click)="router.navigate(['/settings'])">
-                  <i class="bi bi-gear"></i>
-                  <span>Configuración</span>
-                </button></li>
+                <li>
+                  <button (click)="router.navigate(['/profile'])">
+                    <i class="bi bi-person-circle"></i>
+                    <span>Perfil</span>
+                  </button>
+                </li>
+                <li>
+                  <button (click)="router.navigate(['/settings'])">
+                    <i class="bi bi-gear"></i>
+                    <span>Configuración</span>
+                  </button>
+                </li>
                 <hr />
-                <li><button (click)="authSrvc.logout()">
-                  <i class="bi bi-box-arrow-right"></i>
-                  <span>Logout</span>
-                </button></li>
+                <li>
+                  <button (click)="authSrvc.logout()">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                  </button>
+                </li>
               </ul>
             </nav>
           </label>
@@ -95,10 +101,10 @@
   </div>
 </header>
 
-<main>
-  <section *ngFor="let sec of sections" class="menu-section">
-    <h2 class="menu-section__title"> {{ sec.title }} </h2>
-    <div class="menu-list">
+<main class="container-fluid py-4">
+  <section *ngFor="let sec of sections" class="menu-section mb-5">
+    <h2 class="menu-section__title text-center mb-4"> {{ sec.title }} </h2>
+    <div class="menu-list row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
       <div
         class="card"
         *ngFor="let meal of sec.meals"
@@ -117,27 +123,27 @@
 
   <div class="detail-modal" *ngIf="selectedMealDetail">
     <div class="modal-backdrop" (click)="closeDetail()"></div>
-    <div class="modal">
-      <button class="close-btn" (click)="closeDetail()">×</button>
+    <div class="modal position-fixed top-50 start-50 translate-middle bg-white p-4 rounded shadow" style="z-index: 1050; max-width: 90%; width: 600px;">
+      <button class="close-btn position-absolute top-0 end-0 m-2" (click)="closeDetail()">×</button>
 
       <img
-        class="modal-img"
+        class="modal-img rounded mb-3"
         [src]="selectedMealDetail.strMealThumb"
         [alt]="selectedMealDetail.strMeal"
       />
 
-      <p class="modal-price">
+      <p class="modal-price fs-5">
         <strong>Precio:</strong>
         {{ price | currency:'EUR':'symbol':'1.2-2' }}
       </p>
 
-      <div class="stock-control">
+      <div class="stock-control d-flex align-items-center gap-3 mb-3">
         <button (click)="decreaseStock()">−</button>
         <span>{{ stockCount }}</span>
         <button (click)="increaseStock()">+</button>
       </div>
 
-      <button class="action add-cart-btn" (click)="addToCart()">
+      <button class="add-cart-btn btn-success w-100 mb-3" (click)="addToCart()">
         Añadir al carrito
       </button>
 
